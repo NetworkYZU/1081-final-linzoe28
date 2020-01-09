@@ -73,7 +73,10 @@ public class LoginFilter implements Filter {
             //完成 filter 的部分，當 session 中沒有 user 參數時，轉址到 /login.jsp
             //否則正常執行 (30%)
             
-            
+            if(session.getAttribute("user")==null){
+                 request.getRequestDispatcher("/login.jsp").forward(request, response);
+            }
+            chain.doFilter(request, response);
             ///////////////////////////////////////////////////////////////
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
